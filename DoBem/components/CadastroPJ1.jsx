@@ -5,31 +5,31 @@ export const CadastroPJ1 = () => {
     return(
         <View style={Estilos.container}>
             <TextInput style={Estilos.inputCadastro}
-                placeholder="Olá"
+                placeholder="Razão social"
             />
 
             <TextInput style={Estilos.inputCadastro}
-                placeholder="Olá"
+                placeholder="CNPJ"
             />
 
             <TextInput style={Estilos.inputCadastro}
-                placeholder="Olá"
+                placeholder="Telefone"
             />
 
             <TextInput style={Estilos.inputCadastro}
-                placeholder="Olá"
+                placeholder="Email"
             />
 
             <TextInput style={Estilos.inputCadastro}
-                placeholder="Olá"
+                placeholder="Confirme o seu Email"
             />
 
             <TextInput style={Estilos.inputCadastro}
-                placeholder="Olá"
+                placeholder="Senha"
             />
 
             <TextInput style={Estilos.inputCadastro}
-                placeholder="Olá"
+                placeholder="Confirme sua senha"
             />
         </View>
     )

@@ -64,7 +64,6 @@ export const Login = ( {navigation} ) => {
                 style={Estilos.btnLogin} 
                 onPress={()=>{
                     handleLogin()
-                    navigation.navigate('Home')
                 }}>
                     <Text style={Estilos.btnLoginText}>LOGIN</Text>
                 </TouchableOpacity>

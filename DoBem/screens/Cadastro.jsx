@@ -10,7 +10,6 @@ export const Cadastro = () => {
 
     const [etapa, setEtapa] = useState(1);
     const [dados, setDados] = useState({});
-    const [teste, setTeste] = useState('ee')
     const totalEtapas = 3;
   
     const avancarEtapa = () => {
@@ -50,7 +49,6 @@ export const Cadastro = () => {
       <View style={Estilos.container}>
         <View style={Estilos.progressContainer}>
           <View style={[Estilos.barraProgresso, { width: `${(etapa / totalEtapas) * 100}%` }]} />
-          <Text>{teste}</Text>
         </View>
   
         <View style={Estilos.etapas}>
@@ -66,9 +64,7 @@ export const Cadastro = () => {
   
           <TouchableOpacity style={Estilos.btnCadastro} 
             onPress={()=>{
-              if(etapa === 1) {
-                verificarEtapa1() ? setTeste(dados.nome) : Alert.alert('preecher')
-              }
+              avancarEtapa()
             }}>
             
             <Text style={Estilos.btnLoginText}>{etapa === totalEtapas ? 'Finalizar' : 'próximo ▶'}</Text>
