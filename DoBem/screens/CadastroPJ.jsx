@@ -29,7 +29,7 @@ export const CadastroPJ = () => {
     const renderizarEtapa = () => {
         switch (etapa) {
           case 1:
-              return <CadastroPJ1/>
+              return <CadastroPJ1 salvarDados={salvarDados}/>
           case 2:
               return <CadastroPJ2/>
           default:
@@ -43,9 +43,9 @@ export const CadastroPJ = () => {
           <View style={[Estilos.barraProgresso, { width: `${(etapa / totalEtapas) * 100}%` }]} />
         </View>
   
-        <View style={Estilos.etapas}>
-            {renderizarEtapa()}
-        </View>
+        
+        {renderizarEtapa()}
+        
   
         <View style={Estilos.buttonContainer}>
           {etapa > 1 && (

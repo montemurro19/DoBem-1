@@ -9,8 +9,6 @@ export const CadastroEtapa1 = ({salvarDados}) => {
     const [dtNasc, setDtNasc] = useState('')
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
-    const [confEmail, setConfEmail] = useState('')
-    const [confPass, setConfPass] = useState('')
 
     const dadosEtapa1 = {nome, tel, dtNasc, email, pass}
 
@@ -20,8 +18,6 @@ export const CadastroEtapa1 = ({salvarDados}) => {
     return(
 
         <View style={Estilos.container}>
-
-            <Text>Etapa 1</Text>
 
             <TextInput
                 placeholder="Digite seu nome"
@@ -41,7 +37,7 @@ export const CadastroEtapa1 = ({salvarDados}) => {
             />
 
             <TextInput
-                placeholder="Digite sua data de nascimento"
+                placeholder="Data de nascimento (AA/MM/DD)"
                 style={Estilos.inputCadastro}
                 onChange={(dt)=>{
                     setDtNasc(dt)
@@ -57,14 +53,6 @@ export const CadastroEtapa1 = ({salvarDados}) => {
             />
 
             <TextInput
-                placeholder="Confirmação de E-mail"
-                style={Estilos.inputCadastro}
-                onChange={(e)=>{
-                    setConfEmail(e)
-                }}
-            />
-
-            <TextInput
                 placeholder="Crie uma senha"
                 style={Estilos.inputCadastro}
                 onChange={(p)=>{
@@ -72,13 +60,6 @@ export const CadastroEtapa1 = ({salvarDados}) => {
                 }}
             />
 
-            <TextInput
-                placeholder="Confirmação de senha"
-                style={Estilos.inputCadastro}
-                onChange={(p)=>{
-                    setConfPass(p)
-                }}
-            />
         </View>
     )
 }

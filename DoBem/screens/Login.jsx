@@ -47,14 +47,14 @@ export const Login = ( {navigation} ) => {
                 <Image style={Estilos.logo} source={Logo}/>
                 <Text style={Estilos.label}>Email:</Text>
                 <TextInput
-                    style={Estilos.input}
+                    style={Estilos.inputCadastro}
                     onChangeText={(text) => setEmail(text)}
                 />
                 {emailError ? <Text style={Estilos.error}>{emailError}</Text> : null}
 
                 <Text style={Estilos.label}>Senha:</Text>
                 <TextInput
-                    style={Estilos.input}
+                    style={Estilos.inputCadastro}
                     onChangeText={(text) => setPassword(text)}
                     secureTextEntry
                 />
@@ -63,7 +63,8 @@ export const Login = ( {navigation} ) => {
                 <TouchableOpacity 
                 style={Estilos.btnLogin} 
                 onPress={()=>{
-                    handleLogin()
+                    // handleLogin()
+                    navigation.navigate('Pagina inicial')
                 }}>
                     <Text style={Estilos.btnLoginText}>LOGIN</Text>
                 </TouchableOpacity>

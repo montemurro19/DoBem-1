@@ -6,7 +6,7 @@ import { Estilos } from "../Theme/Estilos";
 import { CadastroEtapa2 } from "../components/CadastroEtapa2";
 import { CadastroEtapa3 } from "../components/CadastroEtapa3";
 
-export const Cadastro = () => {
+export const Cadastro = ({ navigation }) => {
 
     const [etapa, setEtapa] = useState(1);
     const [dados, setDados] = useState({});
@@ -29,7 +29,7 @@ export const Cadastro = () => {
     };
 
     const verificarEtapa1 = () => {
-      return dados.nome ? true : false
+      return dados.nome && dados.tel && dados.dtNasc && dados.email && dados.pass ? true : false
     }
 
     const renderizarEtapa = () => {
@@ -37,9 +37,9 @@ export const Cadastro = () => {
         case 1:
             return <CadastroEtapa1 salvarDados={salvarDados}/>
         case 2:
-            return <CadastroEtapa2/>
+            return <CadastroEtapa2 salvarDados={salvarDados}/>
         case 3:
-            return <CadastroEtapa3/>
+            return <CadastroEtapa3 salvarDados={salvarDados}/>
         default:
           return null;
       }
@@ -50,10 +50,8 @@ export const Cadastro = () => {
         <View style={Estilos.progressContainer}>
           <View style={[Estilos.barraProgresso, { width: `${(etapa / totalEtapas) * 100}%` }]} />
         </View>
-  
-        <View style={Estilos.etapas}>
-            {renderizarEtapa()}
-        </View>
+         
+        {renderizarEtapa()}
   
         <View style={Estilos.buttonContainer}>
           {etapa > 1 && (
@@ -64,7 +62,16 @@ export const Cadastro = () => {
   
           <TouchableOpacity style={Estilos.btnCadastro} 
             onPress={()=>{
-              avancarEtapa()
+              if(etapa === 1) {
+                // verificarEtapa1() ? avancarEtapa() : Alert.alert('Preencher os campos corretamente!')
+                avancarEtapa()
+              }
+              if(etapa === 2) {
+                avancarEtapa()
+              }
+              if(etapa === 3) {
+                navigation.navigate('Login')
+              }
             }}>
             
             <Text style={Estilos.btnLoginText}>{etapa === totalEtapas ? 'Finalizar' : 'próximo ▶'}</Text>

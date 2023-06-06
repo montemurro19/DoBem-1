@@ -1,10 +1,12 @@
 import { View, Text, TextInput } from "react-native"
 import { Estilos } from "../Theme/Estilos"
+import { useState } from "react"
 
 export const CadastroEtapa3 = () => {
+
     return(
         <View style={Estilos.container}>
-            <Text>Etapa 3</Text>
+        
             <TextInput
                 placeholder="CEP"
                 style={Estilos.inputCadastro}

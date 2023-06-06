@@ -1,7 +1,7 @@
 // styles.js
 import { StyleSheet } from 'react-native';
 
-const corBase = '#1e314e';
+const corBase = '#421e70';
 
 export const Estilos = StyleSheet.create({
     // lOGIN
@@ -53,26 +53,27 @@ export const Estilos = StyleSheet.create({
     position: 'absolute'
   },
   logo: {
-    width: 230,
-    height: 230,
+    width: 200,
+    height: 200,
     borderRadius: 30,
     marginBottom: 20
   },
   formLogin: {
-    width: '98%',
+    width: '95%',
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    borderTopLeftRadius: 150,
-    borderTopRightRadius: 150,
+    borderTopLeftRadius: 100,
+    borderTopRightRadius: 100,
     position: 'absolute',
     bottom: 0,
-    height: '99%',
+    height: '95%',
     elevation: 100,
-    paddingTop: '15%'
+    paddingTop: '15%',
+    borderWidth: 2,
+    borderColor: '#ccc'
   },
-
 
   // Cadastro
   progressContainer: {
@@ -80,7 +81,7 @@ export const Estilos = StyleSheet.create({
     width: '80%',
     backgroundColor: '#ccc',
     borderRadius: 5,
-    marginTop: '10%'
+    marginVertical: 50
   },
   barraProgresso: {
     height: '100%',
@@ -91,18 +92,12 @@ export const Estilos = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '90%',
-    position: 'absolute',
-    bottom: '3%'
-  },
-  etapas: {
-     height: '100%',
-     width: '100%',
-     justifyContent: 'center'
+    paddingBottom: '8%'
   },
   btnCadastro: {
     backgroundColor: corBase,
     borderRadius: 10,
-    padding: 10
+    padding: 10,
   },
 
   title: {
@@ -114,10 +109,14 @@ export const Estilos = StyleSheet.create({
   },
   inputCadastro : {
     width: '80%',
-    borderWidth: 2,
+    borderBottomWidth: 3,
+    borderColor: corBase,
     padding: 10,
-    borderRadius: 10,
-    marginVertical: 5,
+    marginVertical: 10,
+    fontSize: 16,
+    borderRadius: 5,
+    backgroundColor: '#ddd',
+    elevation: 5
   },
 
   // Cadastro Equipes

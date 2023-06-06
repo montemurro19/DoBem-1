@@ -1,16 +1,21 @@
-import { View, Text, TextInput } from "react-native"
+import { View, Text, TextInput, Alert } from "react-native"
 import { Estilos } from "../Theme/Estilos"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-export const CadastroEtapa2 = () => {
+export const CadastroEtapa2 = ({salvarDados}) => {
 
     const [idEstrangeiro, setIdEstrangeiro] = useState('')
     const [cpf, setCpf] = useState('')
     const [rg, setRg] = useState('')
 
+    const dadosEtapa2 = {idEstrangeiro, cpf, rg}
+
+    useEffect(()=>{
+       salvarDados(dadosEtapa2)
+    }, [idEstrangeiro, cpf, rg])
     return(
         <View style={Estilos.container}>
-            <Text>Etapa 2</Text>
+            <Text style={Estilos.title}>Estamos quase finalizando...</Text>
 
             <TextInput
                 placeholder="ID Estrangeiro"
