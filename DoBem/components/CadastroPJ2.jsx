@@ -5,6 +5,7 @@ import { Estilos } from "../Theme/Estilos"
 export const CadastroPJ2 = () => {
     
     return(
+        
         <View style={Estilos.container}>
             <TextInput
             placeholder="Olá 2"
