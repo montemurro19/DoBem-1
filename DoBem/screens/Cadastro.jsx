@@ -1,5 +1,5 @@
 
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { CadastroEtapa1 } from "../components/CadastroEtapa1";
 import { useState } from "react";
 import { Estilos } from "../Theme/Estilos";

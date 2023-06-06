@@ -2,7 +2,7 @@ import { TextInput, View } from "react-native"
 import { Estilos } from "../Theme/Estilos"
 import { useEffect, useState } from "react"
 
-export const CadastroPJ1 = (salvarDados) => {
+export const CadastroPJ1 = ({salvarDados}) => {
 
     const [razao, setRazao] = useState('')
     const [cnpj, setCnpj] = useState('')
