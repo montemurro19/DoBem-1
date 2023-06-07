@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Home } from './screens/Home';
 import { CadastroPJ } from './screens/CadastroPJ';
 import { PaginaInicial } from './screens/PaginaInicial';
+import { CadastroOng } from './screens/CadastroOng';
 
 export default function App() {
 
@@ -20,6 +21,7 @@ export default function App() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Pagina inicial" component={PaginaInicial} />
+        <Stack.Screen name="Cadastro Ong" component={CadastroOng} />
       </Stack.Navigator>
     </NavigationContainer>
   );

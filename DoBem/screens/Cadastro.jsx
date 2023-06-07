@@ -1,4 +1,3 @@
-
 import { View, Text, TouchableOpacity } from "react-native";
 import { CadastroEtapa1 } from "../components/CadastroEtapa1";
 import { useState } from "react";
@@ -9,8 +8,8 @@ import { CadastroEtapa3 } from "../components/CadastroEtapa3";
 export const Cadastro = ({ navigation }) => {
 
     const [etapa, setEtapa] = useState(1);
-    const [dados, setDados] = useState({});
     const totalEtapas = 3;
+    const [idUser, setIdUser] = useState(null)
   
     const avancarEtapa = () => {
       if (etapa < totalEtapas) {
@@ -23,23 +22,19 @@ export const Cadastro = ({ navigation }) => {
         setEtapa(etapa - 1);
       }
     };
-  
-    const salvarDados = (novosDados) => {
-      setDados({ ...dados, ...novosDados });
-    };
 
-    const verificarEtapa1 = () => {
-      return dados.nome && dados.tel && dados.dtNasc && dados.email && dados.pass ? true : false
+    const getId = (id) => {
+      setIdUser(id)
     }
 
     const renderizarEtapa = () => {
       switch (etapa) {
         case 1:
-            return <CadastroEtapa1 salvarDados={salvarDados}/>
+            return <CadastroEtapa1 avancarEtapa={avancarEtapa} getId={getId}/>
         case 2:
-            return <CadastroEtapa2 salvarDados={salvarDados}/>
+            return <CadastroEtapa2 avancarEtapa={avancarEtapa} retrocederEtapa={retrocederEtapa} idUser={idUser}/>
         case 3:
-            return <CadastroEtapa3 salvarDados={salvarDados}/>
+            return <CadastroEtapa3 avancarEtapa={avancarEtapa} retrocederEtapa={retrocederEtapa} navigation={navigation} idUser={idUser}/>
         default:
           return null;
       }
@@ -53,30 +48,6 @@ export const Cadastro = ({ navigation }) => {
          
         {renderizarEtapa()}
   
-        <View style={Estilos.buttonContainer}>
-          {etapa > 1 && (
-            <TouchableOpacity style={Estilos.btnCadastro} onPress={retrocederEtapa}>
-              <Text style={Estilos.btnLoginText}>◀ voltar</Text>
-            </TouchableOpacity>
-          )}
-  
-          <TouchableOpacity style={Estilos.btnCadastro} 
-            onPress={()=>{
-              if(etapa === 1) {
-                // verificarEtapa1() ? avancarEtapa() : Alert.alert('Preencher os campos corretamente!')
-                avancarEtapa()
-              }
-              if(etapa === 2) {
-                avancarEtapa()
-              }
-              if(etapa === 3) {
-                navigation.navigate('Login')
-              }
-            }}>
-            
-            <Text style={Estilos.btnLoginText}>{etapa === totalEtapas ? 'Finalizar' : 'próximo ▶'}</Text>
-          </TouchableOpacity>
-        </View>
       </View>
 
     );

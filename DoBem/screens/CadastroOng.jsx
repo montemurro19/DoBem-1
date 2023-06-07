@@ -1,28 +1,19 @@
-import { useState } from "react";
-import { TextInput, View } from "react-native"
+import { View, Text, TextInput, TouchableOpacity } from "react-native"
 import { Picker } from '@react-native-picker/picker';
 import { Estilos } from "../Theme/Estilos";
+import { useState } from "react";
 
-export const CadastroEquipe = () => {
+export const CadastroOng = () => {
+
 
     const [valor, setValor] = useState('');
-    
     return(
-        <View style={Estilos.containerPicker}>
+        <View style={Estilos.container}>
 
-             <TextInput
-                placeholder="Digite seu nome"
+            <TextInput
                 style={Estilos.inputCadastro}
+                placeholder="Digite seu nome"
             />
-
-            <Picker 
-            style={Estilos.picker}
-            selectedValue={valor}
-            onValueChange={(itemValue) => setValor(itemValue)}
-            >
-                <Picker.Item label="PÚBLICO" value="publico" />
-                <Picker.Item label="PRIVADO" value="privado" />
-            </Picker>
 
             <Picker 
             style={Estilos.picker}
@@ -55,14 +46,14 @@ export const CadastroEquipe = () => {
                 <Picker.Item label="Santa Catarina" value="Santa Catarina" />
                 <Picker.Item label="Sergipe" value="Sergipe" />
                 <Picker.Item label="Tocantins" value="Tocantins" />
-            </Picker>
-            
+            </Picker>   
+
             <TextInput
                 placeholder="Descrição"
                 style={Estilos.inputCadastro}
                 multiline = {true}
                 numberOfLines = {4}
-            />
+            />       
         </View>
     )
 }

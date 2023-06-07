@@ -91,13 +91,13 @@ export const Estilos = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '90%',
-    paddingBottom: '8%'
+    width: '80%',
+    marginVertical: '5%'
   },
   btnCadastro: {
     backgroundColor: corBase,
     borderRadius: 10,
-    padding: 10,
+    padding: 15,
   },
 
   title: {
@@ -116,7 +116,7 @@ export const Estilos = StyleSheet.create({
     fontSize: 16,
     borderRadius: 5,
     backgroundColor: '#ddd',
-    elevation: 5
+    elevation: 5,
   },
 
   // Cadastro Equipes
@@ -129,6 +129,6 @@ export const Estilos = StyleSheet.create({
 
   picker: {
     width: '80%',
-    backgroundColor: '#ccc',
+    
   }
 });

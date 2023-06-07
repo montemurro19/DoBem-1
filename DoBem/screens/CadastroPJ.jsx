@@ -7,8 +7,8 @@ import { CadastroPJ2 } from "../components/CadastroPJ2";
 export const CadastroPJ = () => {
 
     const [etapa, setEtapa] = useState(1);
-    const [dados, setDados] = useState({});
     const totalEtapas = 2;
+    const [idEmpresa, setIdEmpresa] = useState(null)
   
     const avancarEtapa = () => {
       if (etapa < totalEtapas) {
@@ -21,17 +21,17 @@ export const CadastroPJ = () => {
         setEtapa(etapa - 1);
       }
     };
-  
-    const salvarDados = (novosDados) => {
-      setDados({ ...dados, ...novosDados });
-    };
+
+    const getId = (id) => {
+      setIdEmpresa(id)
+    }
 
     const renderizarEtapa = () => {
         switch (etapa) {
           case 1:
-              return <CadastroPJ1 salvarDados={salvarDados}/>
+              return <CadastroPJ1 avancarEtapa={avancarEtapa} getId={getId}/>
           case 2:
-              return <CadastroPJ2/>
+              return <CadastroPJ2 avancarEtapa={avancarEtapa} retrocederEtapa={retrocederEtapa} idEmpresa={idEmpresa}/>
           default:
             return null;
         }
@@ -45,19 +45,6 @@ export const CadastroPJ = () => {
   
         
         {renderizarEtapa()}
-        
-  
-        <View style={Estilos.buttonContainer}>
-          {etapa > 1 && (
-            <TouchableOpacity style={Estilos.btnCadastro} onPress={retrocederEtapa}>
-              <Text style={Estilos.btnLoginText}>◀ voltar</Text>
-            </TouchableOpacity>
-          )}
-  
-          <TouchableOpacity style={Estilos.btnCadastro} onPress={avancarEtapa}>
-            <Text style={Estilos.btnLoginText}>{etapa === totalEtapas ? 'Finalizar' : 'próximo ▶'}</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     )
 }

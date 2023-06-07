@@ -2,55 +2,56 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Image, TouchableOpacity } from 'react-native';
 import { Estilos } from '../Theme/Estilos';
 import Logo from '../assets/logo.png'
+import axios from 'axios';
+
+const api = axios.create({baseURL: "http://localhost:8080"})
 
 export const Login = ( {navigation} ) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [error, setError] = useState('')
+
+  const logar = () => {
+
+    const data = {
+        email: email,
+        senha: password
+    };
+
+    api.post("/api/login", JSON.stringify(data), {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+    .then((info)=>{
+        console.log(info)
+    })
+}
 
   const validateEmail = () => {
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-    if (!emailRegex.test(email)) {
-      setEmailError('Email inválido');
-    } else {
-      setEmailError('');
-    }
+    return emailRegex.test(email)
   };
 
   const validatePassword = () => {
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
-
-    if (!passwordRegex.test(password)) {
-      setPasswordError(
-        'Senha inválida'
-        //A senha deve conter uma letra maiúscula, uma letra minúscula, um número e ter entre 6 e 20 caracteres
-      );
-    } else {
-      setPasswordError('');
-    }
-  };
-
-  const handleLogin = () => {
-    validateEmail()
-    validatePassword()
-    // fazer a lógica de autenticação
+    return passwordRegex.test(password)
   };
 
   return (
         <View style={Estilos.container}>
-
             <View style={Estilos.circle}/>
         
             <View  style={Estilos.formLogin}>
                 <Image style={Estilos.logo} source={Logo}/>
+
+                {error}
                 <Text style={Estilos.label}>Email:</Text>
                 <TextInput
                     style={Estilos.inputCadastro}
                     onChangeText={(text) => setEmail(text)}
                 />
-                {emailError ? <Text style={Estilos.error}>{emailError}</Text> : null}
 
                 <Text style={Estilos.label}>Senha:</Text>
                 <TextInput
@@ -58,12 +59,13 @@ export const Login = ( {navigation} ) => {
                     onChangeText={(text) => setPassword(text)}
                     secureTextEntry
                 />
-                {passwordError ? <Text style={Estilos.error}>{passwordError}</Text> : null}
 
                 <TouchableOpacity 
                 style={Estilos.btnLogin} 
                 onPress={()=>{
-                    // handleLogin()
+                    // validateEmail() && validatePassword() ? 
+                    logar() 
+                    // Alert.alert('Login inválido')
                     navigation.navigate('Pagina inicial')
                 }}>
                     <Text style={Estilos.btnLoginText}>LOGIN</Text>

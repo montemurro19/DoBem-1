@@ -1,8 +1,11 @@
-import { TextInput, View } from "react-native"
+import {  View, TextInput, Text, TouchableOpacity } from "react-native"
 import { Estilos } from "../Theme/Estilos"
 import { useEffect, useState } from "react"
+import axios from 'axios';
 
-export const CadastroPJ1 = ({salvarDados}) => {
+const api = axios.create({baseURL: "http://localhost:8080"})
+
+export const CadastroPJ1 = ({ avancarEtapa, retrocederEtapa, getId }) => {
 
     const [razao, setRazao] = useState('')
     const [cnpj, setCnpj] = useState('')
@@ -10,48 +13,67 @@ export const CadastroPJ1 = ({salvarDados}) => {
     const [emailPj, setEmailPj] = useState('')
     const [senha, setSenha] = useState('')
 
-    const dadosPJ1 = {razao, cnpj, telefone, emailPj, senha}
+    const salvar = () => {
+        const dados = {
+            razaoSocial: razao,
+            cnpj: cnpj,
+            telefone: telefone,
+            email: emailPj,
+            senha: senha,
+        }
 
-    useEffect(()=>{
-        salvarDados(dadosPJ1)
-    }, [razao, cnpj, telefone, emailPj, senha])
+        api.post("/api/empresa", JSON.stringify(dados), {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+        })
+        .then((info)=>{
+            getId(info.data.codigo);
+        })
+    }
 
     return(
         <View style={Estilos.container}>
             <TextInput style={Estilos.inputCadastro}
                 placeholder="Razão social"
-                onChange={(r)=>{
-                    setRazao(r)
-                }}
+                value={razao}
+                onChangeText={setRazao}
             />
 
             <TextInput style={Estilos.inputCadastro}
                 placeholder="CNPJ"
-                onChange={(c) => {
-                    setCnpj(c)
-                }}
+                value={cnpj}
+                onChangeText={setCnpj}
             />
 
             <TextInput style={Estilos.inputCadastro}
                 placeholder="Telefone"
-                onChange={(t)=>{
-                    setTelefone(t)
-                }}
+                value={telefone}
+                onChangeText={setTelefone}
             />
 
             <TextInput style={Estilos.inputCadastro}
                 placeholder="Email"
-                onChange={(e)=>{
-                    setEmailPj(e)
-                }}
+                value={emailPj}
+                onChangeText={setEmailPj}
             />
 
             <TextInput style={Estilos.inputCadastro}
                 placeholder="Senha"
-                onChange={(s) => {
-                    setSenha(s)
-                }}
+                value={senha}
+                onChangeText={setSenha}
             />
+
+            <TouchableOpacity style={Estilos.btnLogin} 
+                onPress={
+                    ()=>{
+                        salvar()
+                        avancarEtapa()
+                    }}
+                >
+                    <Text style={Estilos.btnLoginText}>Próximo</Text>
+                </TouchableOpacity>
+
         </View>
     )
 }
